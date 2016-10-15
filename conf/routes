@@ -1,15 +1,13 @@
 # Routes
-# This file defines all application routes (Higher priority routes first)
-# ~~~~
 
-# An example controller showing a sample home page
-GET     /users                      controllers.HomeController.indexUsers
+GET     /users                      controllers.UserController.indexUsers
 GET     /titles                     controllers.TitleController.indexTitles
-GET     /title                      controllers.TitleController.getTitle(titleiId: long)
-POST    /create_title               controllers.TitleController.createTitle(titleString: string)
-PUT     /update_title               controllers.TitleController.updateTitle(titleString: string)
-POST    /create_task                controllers.TaskController.createTask(parentId: Long ?= null, childId:Long ?= null, description: string)
-POST    /finish_task                controllers.TaskController.finishTask(userId: Long, taskId: long)
-PUT     /update_task_parent         controllers.TaskController.updateParent(taskId: Long, taskOldParentId: Long ?= null, taskNewParentId: Long ?= null)
-PUT     /update_task_child          controllers.TaskController.updateChild(taskId: Long, taskOldParentId: Long ?= null, taskNewParentId: Long ?= null)
-GET     /task                       controllers.TaskController.getTask(taskId: Long)
+GET     /title                      controllers.TitleController.getTitle(titleId: Long)
+POST    /create_title               controllers.TitleController.createTitle(titleString: String)
+PUT     /update_title               controllers.TitleController.updateTitle(titleId: Long, titleString: String)
+POST    /create_task                controllers.TaskController.createTask(titleId: Long, parentId: Long ?= -1, childId:Long ?= -1, description: String)
+PUT     /update_task                controllers.TaskController.updateTask(taskId: Long,description: String)
+POST    /finish_task                controllers.TaskController.finishTask(userId: Long, taskId: Long)
+PUT     /update_task_parent         controllers.TaskController.updateParent(taskId: Long, taskOldParentId: Long ?= -1, taskNewParentId: Long ?= -1)
+PUT     /update_task_child          controllers.TaskController.updateChild(taskId: Long, taskOldChildId: Long ?= -1, taskNewChildId: Long ?= -1)
+GET     /task                       controllers.TaskController.getTask(userId: Long ?= -1, taskId: Long)

@@ -15,6 +15,7 @@ import java.util.List;
 @Entity
 public class Task extends Model{
     @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     public Long id;
 
     @ManyToOne(optional=false)
@@ -29,7 +30,7 @@ public class Task extends Model{
     public String description;
 
     @ManyToMany
-    @JsonManagedReference
+    @JsonBackReference
     @JoinTable(name = "task_parents", joinColumns = @JoinColumn(name = "task_id"), inverseJoinColumns = @JoinColumn(name = "parent_id"))
     public List<Task> parents = new ArrayList<>();
 

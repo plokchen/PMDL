@@ -16,6 +16,7 @@ import java.util.List;
 public class Title extends Model {
 
     @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     public Long id;
 
     @Constraints.Required
