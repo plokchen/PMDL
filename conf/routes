@@ -3,4 +3,13 @@
 # ~~~~
 
 # An example controller showing a sample home page
-GET     /                           controllers.HomeController.index
+GET     /users                      controllers.HomeController.indexUsers
+GET     /titles                     controllers.TitleController.indexTitles
+GET     /title                      controllers.TitleController.getTitle(titleiId: long)
+POST    /create_title               controllers.TitleController.createTitle(titleString: string)
+PUT     /update_title               controllers.TitleController.updateTitle(titleString: string)
+POST    /create_task                controllers.TaskController.createTask(parentId: Long ?= null, childId:Long ?= null, description: string)
+POST    /finish_task                controllers.TaskController.finishTask(userId: Long, taskId: long)
+PUT     /update_task_parent         controllers.TaskController.updateParent(taskId: Long, taskOldParentId: Long ?= null, taskNewParentId: Long ?= null)
+PUT     /update_task_child          controllers.TaskController.updateChild(taskId: Long, taskOldParentId: Long ?= null, taskNewParentId: Long ?= null)
+GET     /task                       controllers.TaskController.getTask(taskId: Long)

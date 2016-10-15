@@ -5,31 +5,29 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import play.data.validation.Constraints;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Patrick on 10/15/2016.
  */
 @Entity
-public class User extends Model {
+public class Title extends Model {
 
     @Id
     public Long id;
 
     @Constraints.Required
-    public String password;
+    public String name;
 
-    @ManyToMany(mappedBy = "users")
+    @OneToMany(mappedBy="title")
     @JsonManagedReference
     public List<Task> tasks;
 
-    @ManyToMany
-    @JsonManagedReference
-    public List<Title> titles;
+    @ManyToMany(mappedBy="titles")
+    @JsonBackReference
+    public List<User> users;
 
-    public static Finder<Long, User> find = new Finder<Long,User>(User.class);
+    public static Finder<Long, Title> find = new Finder<Long,Title>(Title.class);
 }
